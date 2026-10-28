@@ -11,7 +11,7 @@ flowchart LR
     C --> E
     P[영어 장면 설명] --> F[MFLUX CLI]
     E --> F
-    F --> G[프로젝트 MLX 실행기]
+    F --> G[C++ MLX 디노이저]
     Q[로컬 Q8 체크포인트] --> G
     G --> H[최대 512 PNG]
 ```
@@ -27,7 +27,8 @@ flowchart LR
 | `auto_regions.py` | 후보 점수·겹침·다양성·예산 제어 |
 | `detect_regions.swift` | macOS Vision 분석; 위치와 신뢰도만 반환 |
 | `launch_generation.py` | 참조 역할 설명·오프라인 CLI·런타임 게이트 |
-| `src/imagen/runtime/` | MFLUX 클래스의 프로젝트 프로세스 내 패치 |
+| `src/imagen/native/` | C++ 디노이저, Python 인코딩·디코딩 연결 |
+| `src/imagen/runtime/` | 과거 Python 실행기와 벤치마크 패치 |
 
 자동 분석 프로세스는 MFLUX 생성 프로세스가 시작되기 전에 끝난다. 생성 시점에는 각 입력이 512 이하인 준비된 PNG만 전달된다. 원본 경로나 OCR로 읽은 글자가 프롬프트 지시로 추가되지 않는다. 로컬 참조 기록에는 원본 경로와 해시가 포함되므로 `outputs/`는 Git에서 제외한다.
 
@@ -35,7 +36,7 @@ flowchart LR
 
 실행 최적화는 같은 텐서 계산을 더 빠르게 수행하는 계층이다. 입력 최적화는 전체 참조를 작은 구도 참조와 고해상도 디테일 참조로 나누는 계층이다. 후자는 정보의 배분과 출력에 영향을 준다. 두 효과를 같은 종류의 벤치마크로 합산하지 않는다.
 
-런타임 모듈의 기존 파일명과 수치 연산은 측정 때의 바이트를 유지했다. `gaon_` 접두사는 기존 커널 모듈 이름이다. 프로젝트 외부의 설치된 MFLUX 소스와 디스크 체크포인트는 수정하지 않는다. `IMAGEN_RUNTIME=0`이면 게이트를 끄고 native MFLUX 클래스를 사용한다.
+C++ 디노이저는 체크포인트의 transformer 가중치를 직접 읽고 전체 스텝을 실행한다. Python은 참조·프롬프트 인코딩과 VAE 디코딩을 맡으며 임시 safetensors로 텐서를 전달한다. 기존 Python 런타임은 과거 벤치마크의 재현을 위해 남긴다. `IMAGEN_RUNTIME=0`이면 C++의 가중치 복원과 CPU/GPU 분할을 끄고 Q8 연산을 사용한다. 고정 입력 투영과 위치 임베딩은 재사용한다.
 
 ## 범위
 

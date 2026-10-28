@@ -1,5 +1,9 @@
 # 벤치마크와 측정 한계
 
+현재 C++ 편집 벤치마크는 [최적화 실험 정리](optimization-experiments.md)를 참조한다.
+
+이 문서의 수치는 C++ 전환 전 Python 실행기의 기록이다. 현재 C++ 실행기의 성능 수치로 사용하지 않는다.
+
 ## 1. 같은 입력의 실행기 비교
 
 ![런타임 시간·메모리](assets/runtime-comparison.svg)

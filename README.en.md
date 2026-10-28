@@ -6,7 +6,11 @@
 
 Imagen wraps the installed MFLUX/MLX engine and an existing Q8 checkpoint. It generates images from detailed English captions, edits reference images, and automatically supplies higher-detail crops of faces, text and salient objects. Each model input and the generated output stays within 512 pixels per edge.
 
-## Recorded performance
+The denoising transformer and scheduler run through an MLX C++ executable; Python handles prompt/reference encoding and image decoding.
+
+## Recorded performance (previous Python runtime)
+
+These historical numbers do not describe the current C++ executable.
 
 ![Same-input runtime time and memory](docs/assets/runtime-comparison.svg)
 
@@ -32,7 +36,7 @@ cd Imagen
 ./setup.sh
 ```
 
-Setup pins the recorded MFLUX commit and MLX versions. It does not download weights. If commands are missing, run `uv tool update-shell` and reopen your terminal.
+Setup pins the recorded MFLUX commit and MLX versions and builds the C++ denoiser. It does not download weights. If commands are missing, run `uv tool update-shell` and reopen your terminal.
 
 Accept access conditions on the [official model page](https://huggingface.co/black-forest-labs/flux-3-image-klein) and use a token with read access to that repository:
 
@@ -72,7 +76,7 @@ Prepared references and local metadata are saved beside the output in `NAME.refe
 - `SIZE`, or `WIDTH` and `HEIGHT`: output size, capped at 512.
 - `STEPS=16`, `SEED=7`: defaults.
 - `REFERENCE_REGIONS=examples/manual-regions.json`: manual original-pixel crops replace automatic selection. An empty list disables detail crops.
-- `IMAGEN_RUNTIME=0`: disable runtime patches while preserving size/reference processing.
+- `IMAGEN_RUNTIME=0`: disable dense weight preparation and CPU/GPU splitting in the C++ denoiser.
 
 See [usage](docs/usage.md), [automatic references](docs/automatic-references.md), [runtime experiments](docs/optimization.md) and [development](docs/development.md).
 
@@ -80,12 +84,13 @@ See [usage](docs/usage.md), [automatic references](docs/automatic-references.md)
 
 ```text
 src/imagen/references/   # shared limits, local detection, crop selection, CLI dispatch
-src/imagen/runtime/      # gated MLX/Metal patches; existing checkpoint remains intact
+src/imagen/native/       # C++ denoiser and Python encoding/decoding bridge
+src/imagen/runtime/      # previous Python MLX/Metal runtime, used by historical benchmarks
 scripts/                 # setup, benchmark reproduction, figure rendering
 benchmarks/data/         # recorded numeric evidence
 ```
 
-Large stream weights are reconstructed once, Q/K/V are packed, normalization/RoPE/layout operations are fused, and MLP input output-channels are split across CPU FP32 and GPU BF16. Native rounding boundaries are preserved; short streams keep the original implementation. Runtime optimization and input selection are separate mechanisms.
+Large stream weights are reconstructed once and MLP input output-channels are split across CPU FP32 and GPU BF16. Fixed text/reference projections and positional embeddings are reused within a request. Q/K/V weights are packed and the previous Metal fusion kernels are used for large streams. Independent attention and MLP work is submitted together, and the final block computes only image-token outputs while retaining all attention keys and values. Short streams retain Q8 computation. Runtime optimization and input selection are separate mechanisms.
 
 ## License
 

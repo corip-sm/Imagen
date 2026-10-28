@@ -11,7 +11,15 @@ https://github.com/ml-explore/mlx/blob/v0.32.4/mlx/backend/metal/kernels/rms_nor
 Copyright © 2023 Apple Inc. MLX's MIT license is included in
 `licenses/MLX-MIT.txt`.
 
-Project changes preserve native LayerNorm, typed arithmetic and reduction order;
+The previous Python runtime changes preserve native LayerNorm, typed arithmetic and reduction order;
 pack Q/K/V before evaluation; process packed Q/K/V directly; and reconstruct
 existing Q8 weights for GPU BF16 and CPU FP32 execution. The on-disk checkpoint
-is not rewritten. These changes activate only through the project launcher.
+is not rewritten. The historical benchmark can activate these changes in its own worker process.
+
+The FLUX.3 C++ transformer and scheduler follow the MFLUX implementation:
+https://github.com/mflux-community/mflux/tree/8a7fd0a486635f670ef90e02efe1c051ed3f133c/src/mflux/models/flux3
+Copyright © 2026 Filip Strand. MFLUX's MIT license is included in
+`licenses/MFLUX-MIT.txt`.
+
+The C++ runtime uses a port of the same fused Metal kernels from the prior
+Python runtime, with their original rounding behavior retained.

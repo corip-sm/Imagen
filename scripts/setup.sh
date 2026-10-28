@@ -19,3 +19,5 @@ uv tool install --python 3.12 \
   --from git+https://github.com/mflux-community/mflux.git@8a7fd0a486635f670ef90e02efe1c051ed3f133c \
   --with mlx==0.32.4 --with mlx-metal==0.32.4 \
   mflux --force
+
+"${0:A:h}/build-native.sh"

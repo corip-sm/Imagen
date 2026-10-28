@@ -79,6 +79,9 @@ def main() -> None:
         command.extend(("--image-paths", *references))
     environment = os.environ.copy()
     environment.update(GAON_MFLUX_FUSED_KERNELS=runtime_enabled, HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1")
+    root = Path(__file__).resolve().parents[3]
+    environment["IMAGEN_MFLUX_PYTHON"] = sys.executable
+    environment["PATH"] = str(root / "scripts" / "native") + os.pathsep + environment.get("PATH", "")
     runtime = str(Path(__file__).resolve().parents[1] / "runtime")
     existing = environment.get("PYTHONPATH")
     environment["PYTHONPATH"] = runtime + (os.pathsep + existing if existing else "")

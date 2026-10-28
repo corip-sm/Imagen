@@ -1,0 +1,4 @@
+#!/bin/zsh
+set -euo pipefail
+project_root="${0:A:h:h:h}"
+exec "${IMAGEN_MFLUX_PYTHON:?missing MFLUX Python interpreter}" "$project_root/src/imagen/native/generate.py" "$@"
