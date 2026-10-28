@@ -1,6 +1,13 @@
 #!/bin/zsh
 set -euo pipefail
 
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+  echo "Usage: $0 OUTPUT.png 'full scene caption' [reference.png ...]"
+  echo 'Settings: SIZE=512 WIDTH=... HEIGHT=... STEPS=16 SEED=7'
+  echo 'Model: IMAGEN_MODEL=/path/to/flux3-klein-q8'
+  echo 'Optional: REFERENCE_REGIONS=regions.json IMAGEN_RUNTIME=0'
+  exit 0
+fi
 if (( $# < 2 )); then
   echo "Usage: $0 OUTPUT.png 'full scene caption' [reference.png ...]" >&2
   exit 2
@@ -15,7 +22,11 @@ seed="${SEED:-7}"
 width="${WIDTH:-${SIZE:-512}}"
 height="${HEIGHT:-${SIZE:-512}}"
 steps="${STEPS:-16}"
-model_path="${GAON_IMAGE_MODEL:-$HOME/.cache/gaon-image/flux3-klein-q8}"
+model_path="${IMAGEN_MODEL:-${GAON_IMAGE_MODEL:-$HOME/.cache/imagen/flux3-klein-q8}}"
+if [[ -z "${IMAGEN_MODEL:-}${GAON_IMAGE_MODEL:-}" && ! -d "$model_path" \
+      && -d "$HOME/.cache/gaon-image/flux3-klein-q8" ]]; then
+  model_path="$HOME/.cache/gaon-image/flux3-klein-q8"
+fi
 
 if [[ ! -d "$model_path" ]]; then
   echo "Q8 model directory not found: $model_path" >&2

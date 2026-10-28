@@ -23,6 +23,9 @@ def main() -> None:
     parser.add_argument("references", type=Path, nargs="*")
     args = parser.parse_args()
     try:
+        runtime_enabled = os.environ.get("IMAGEN_RUNTIME", "1")
+        if runtime_enabled not in ("0", "1"):
+            raise ValueError("IMAGEN_RUNTIME must be 0 or 1")
         width, height = output_size(args.width, args.height)
         output = args.output.resolve()
         if output in [path.resolve() for path in args.references]:
@@ -75,7 +78,7 @@ def main() -> None:
     if references:
         command.extend(("--image-paths", *references))
     environment = os.environ.copy()
-    environment.update(GAON_MFLUX_FUSED_KERNELS="1", HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1")
+    environment.update(GAON_MFLUX_FUSED_KERNELS=runtime_enabled, HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1")
     runtime = str(Path(__file__).resolve().parents[1] / "runtime")
     existing = environment.get("PYTHONPATH")
     environment["PYTHONPATH"] = runtime + (os.pathsep + existing if existing else "")
