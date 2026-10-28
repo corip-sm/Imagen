@@ -1,0 +1,94 @@
+{
+  "date": "2026-10-28",
+  "cases": [
+    {
+      "case": "portrait",
+      "selected_kinds": [
+        "face",
+        "object"
+      ],
+      "detail_count": 2,
+      "all_inputs_at_most_512": true,
+      "detail_tokens": 1078,
+      "native_crop_pixel_checks": 1,
+      "preparation_seconds": 0.8121282920037629,
+      "detector_errors": [],
+      "source_unchanged": true
+    },
+    {
+      "case": "product",
+      "selected_kinds": [
+        "object",
+        "text"
+      ],
+      "detail_count": 3,
+      "all_inputs_at_most_512": true,
+      "detail_tokens": 892,
+      "native_crop_pixel_checks": 2,
+      "preparation_seconds": 0.6199066249973839,
+      "detector_errors": [],
+      "source_unchanged": true
+    },
+    {
+      "case": "text",
+      "selected_kinds": [
+        "text"
+      ],
+      "detail_count": 3,
+      "all_inputs_at_most_512": true,
+      "detail_tokens": 487,
+      "native_crop_pixel_checks": 1,
+      "preparation_seconds": 0.5905832909920719,
+      "detector_errors": [],
+      "source_unchanged": true
+    },
+    {
+      "case": "blank",
+      "selected_kinds": [],
+      "detail_count": 0,
+      "all_inputs_at_most_512": true,
+      "detail_tokens": 0,
+      "native_crop_pixel_checks": 0,
+      "preparation_seconds": 0.4896110420086188,
+      "detector_errors": [],
+      "source_unchanged": true
+    }
+  ],
+  "automatic_default_cli_dispatch": true,
+  "manual_override": true,
+  "small_inputs_skip_analysis": true,
+  "reference_limit": true,
+  "deduplication": true,
+  "detail_budget": 1536,
+  "detector_failure_stops_generation": true,
+  "images_generated": false,
+  "images_visually_inspected": false,
+  "new_model_installed": false,
+  "integration": {
+    "mixed_source_indices_preserved": true,
+    "exif_orientation_matches_detector": true,
+    "korean_text_detail_count": 3,
+    "current_prompt_and_256px_dispatch": true,
+    "images_generated": false,
+    "images_visually_inspected": false
+  },
+  "shared_policy_and_final_source_syntax": true,
+  "limits": {
+    "max_input_edge": 512,
+    "max_auto_details": 3,
+    "detail_token_budget": 1536,
+    "max_total_references": 10
+  },
+  "measurement_scope": "Input analysis/preparation and model-free CLI dispatch; no new FLUX image generation.",
+  "cold_initialization_observed_seconds": [
+    17.082775950431824,
+    15.817723989486694
+  ],
+  "source_sha256": {
+    "reference_optimization/auto_regions.py": "136c96f31fb903386563784c6052e96c4fbb6f7614592aa0188f35deef634a70",
+    "reference_optimization/detect_regions.swift": "a4c3cd91cb4581e9de789651a2d8f15f55602c20342046f6f4c8ad2134980a41",
+    "reference_optimization/launch_generation.py": "0a9efb768d88cac5f0f8feab885c2fa3acfc144967a66df636f2523d697d64ec",
+    "reference_optimization/prepare_references.py": "8adb823240a1333cc735403a35e365a0389cabb8d724b2ebb35a00c8459f2f6b",
+    "reference_optimization/reference_policy.py": "8483f71e2b25a47cc555ca736715ff5ba1748970059bcbe3d90b35bf0a50ad63"
+  }
+}

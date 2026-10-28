@@ -1,0 +1,1019 @@
+{
+  "date": "2026-10-28",
+  "hardware": "Apple M3 Pro, 36 GB unified memory",
+  "software": {
+    "mflux": "0.24.0",
+    "mflux_commit": "8a7fd0a486635f670ef90e02efe1c051ed3f133c",
+    "mlx": "0.32.4",
+    "mlx_metal": "0.32.4"
+  },
+  "model": "Existing FLUX 3 Image Klein Q8; checkpoint unchanged",
+  "measurement_scope": "16 denoising steps, including lazy runtime preparation; excludes checkpoint construction, prompt encoding, VAE decoding and image saving. Same saved text embeddings/noise, 1 GB MLX allocator cache limit.",
+  "baseline": {
+    "steps": 16,
+    "settings": {
+      "seed": 7,
+      "width": 1024,
+      "height": 1024,
+      "schedule_steps": 16
+    },
+    "runtime_enabled": false,
+    "load_seconds": 1.385030707999249,
+    "denoise_seconds": 180.69772208300128,
+    "step_seconds": [
+      11.118546166995657,
+      11.032784958006232,
+      11.064900292010861,
+      11.05381029099226,
+      11.072647458000574,
+      11.35132491600234,
+      11.420915624999907,
+      11.39665608300129,
+      11.370895250001922,
+      11.363059458002681,
+      11.382713415994658,
+      11.401180667002336,
+      11.400238124988391,
+      11.441433083004085,
+      11.52785991699784,
+      11.297509291005554
+    ],
+    "peak_bytes": 6463970904,
+    "active_bytes": 5199368592,
+    "prepare": [],
+    "first_step_error": {
+      "max_abs": 0.0,
+      "different": 0,
+      "relative_rms": 0.0,
+      "finite": true
+    },
+    "final_latents_error": {
+      "max_abs": 0.0,
+      "different": 0,
+      "relative_rms": 0.0,
+      "finite": true
+    }
+  },
+  "optimized": {
+    "steps": 16,
+    "settings": {
+      "seed": 7,
+      "width": 1024,
+      "height": 1024,
+      "schedule_steps": 16
+    },
+    "runtime_enabled": true,
+    "load_seconds": 1.3015484999923501,
+    "denoise_seconds": 129.78893937500834,
+    "step_seconds": [
+      10.371531124998,
+      7.968615458012209,
+      8.010793041990837,
+      7.950137374995393,
+      7.95565412499127,
+      7.9960099999880185,
+      7.9597547500015935,
+      7.949030916992342,
+      7.952680625006906,
+      7.951449959000456,
+      7.954749416006962,
+      7.955614291000529,
+      7.953362375003053,
+      7.958845749992179,
+      7.950647500008927,
+      7.948923916992499
+    ],
+    "peak_bytes": 12331362820,
+    "active_bytes": 10668806544,
+    "prepare": [
+      {
+        "block_count": 33,
+        "linear_count": 132,
+        "hybrid_count": 33,
+        "cpu_rows": 272448,
+        "weight_elements": 4048551936,
+        "packed_bytes_replaced": 4301586432,
+        "prepared_weight_bytes": 9771024384,
+        "requested_cpu_fraction": 0.45,
+        "fallback_blocks": {},
+        "build_seconds": 0.001881500007584691,
+        "eval_seconds": 0.6100827920017764,
+        "prepare_seconds": 0.6442208750086138,
+        "active_bytes_before": 11994512,
+        "active_bytes_after": 9783018896,
+        "peak_bytes": 10592257424,
+        "modes": [
+          "image",
+          "joint"
+        ]
+      }
+    ],
+    "first_step_error": {
+      "max_abs": 0.0,
+      "different": 0,
+      "relative_rms": 0.0,
+      "finite": true
+    },
+    "final_latents_error": {
+      "max_abs": 0.0,
+      "different": 0,
+      "relative_rms": 0.0,
+      "finite": true
+    }
+  },
+  "time_reduction_percent": 28.173450180300897,
+  "target_seconds": 60,
+  "target_met": false,
+  "final_latents_bitwise_equal": true,
+  "final_latent_elements": 524288,
+  "primitive_checks": {
+    "count": 122,
+    "all_exact": true,
+    "cases": [
+      {
+        "case": "norm mlx.core.float32,B=1,mod=1x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.float32,B=1,mod=1x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "norm mlx.core.float32,B=1,mod=1x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.float32,B=1,mod=1x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "silu mlx.core.float32,B=1,shrink=1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "silu mlx.core.float32,B=1,shrink=8",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "norm mlx.core.float32,B=2,mod=1x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.float32,B=2,mod=1x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "norm mlx.core.float32,B=2,mod=1x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.float32,B=2,mod=1x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "norm mlx.core.float32,B=2,mod=2x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.float32,B=2,mod=2x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "norm mlx.core.float32,B=2,mod=2x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.float32,B=2,mod=2x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "silu mlx.core.float32,B=2,shrink=1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "silu mlx.core.float32,B=2,shrink=8",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "norm mlx.core.bfloat16,B=1,mod=1x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.bfloat16,B=1,mod=1x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "norm mlx.core.bfloat16,B=1,mod=1x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.bfloat16,B=1,mod=1x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "silu mlx.core.bfloat16,B=1,shrink=1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "silu mlx.core.bfloat16,B=1,shrink=8",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "norm mlx.core.bfloat16,B=2,mod=1x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.bfloat16,B=2,mod=1x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "norm mlx.core.bfloat16,B=2,mod=1x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.bfloat16,B=2,mod=1x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "norm mlx.core.bfloat16,B=2,mod=2x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.bfloat16,B=2,mod=2x1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "norm mlx.core.bfloat16,B=2,mod=2x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "residual mlx.core.bfloat16,B=2,mod=2x5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "silu mlx.core.bfloat16,B=2,shrink=1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "silu mlx.core.bfloat16,B=2,shrink=8",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "full Q8 block B=1,mod_tokens=1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "full Q8 block B=1,mod_tokens=5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "full Q8 block B=2,mod_tokens=1",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "full Q8 block B=2,mod_tokens=5",
+        "passed": true,
+        "max_abs": 0.0,
+        "relative_rms": 0.0
+      },
+      {
+        "case": "typed SwiGLU mlx.core.float32 shrink=1",
+        "elements": 8203,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "typed SwiGLU mlx.core.float32 shrink=8",
+        "elements": 8203,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "typed SwiGLU mlx.core.bfloat16 shrink=1",
+        "elements": 8203,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "typed SwiGLU mlx.core.bfloat16 shrink=8",
+        "elements": 8203,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "typed SwiGLU mlx.core.float16 shrink=1",
+        "elements": 8203,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "typed SwiGLU mlx.core.float16 shrink=8",
+        "elements": 8203,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "Q RMS+real RoPE mlx.core.float32 B=1",
+        "elements": 52224,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "K RMS+real RoPE mlx.core.float32 B=1",
+        "elements": 52224,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "Q RMS+real RoPE mlx.core.float32 B=2",
+        "elements": 104448,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "K RMS+real RoPE mlx.core.float32 B=2",
+        "elements": 104448,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "Q RMS+real RoPE mlx.core.bfloat16 B=1",
+        "elements": 52224,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "K RMS+real RoPE mlx.core.bfloat16 B=1",
+        "elements": 52224,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "Q RMS+real RoPE mlx.core.bfloat16 B=2",
+        "elements": 104448,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "K RMS+real RoPE mlx.core.bfloat16 B=2",
+        "elements": 104448,
+        "different": 0,
+        "max_abs": 0.0,
+        "relative_rms": 0.0,
+        "passed": true
+      },
+      {
+        "case": "packed Q mlx.core.float32,B=1,L=1,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float32,B=1,L=1,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float32,B=1,L=1,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float32,B=1,L=1,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float32,B=1,L=1,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float32,B=1,L=1,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float32,B=1,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float32,B=1,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float32,B=1,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float32,B=1,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float32,B=1,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float32,B=1,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float32,B=2,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float32,B=2,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float32,B=2,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float32,B=2,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float32,B=2,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float32,B=2,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float32,B=1,L=257,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float32,B=1,L=257,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float32,B=1,L=257,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float32,B=1,L=257,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float32,B=1,L=257,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float32,B=1,L=257,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.bfloat16,B=1,L=1,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.bfloat16,B=1,L=1,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.bfloat16,B=1,L=1,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.bfloat16,B=1,L=1,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.bfloat16,B=1,L=1,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.bfloat16,B=1,L=1,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.bfloat16,B=1,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.bfloat16,B=1,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.bfloat16,B=1,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.bfloat16,B=1,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.bfloat16,B=1,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.bfloat16,B=1,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.bfloat16,B=2,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.bfloat16,B=2,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.bfloat16,B=2,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.bfloat16,B=2,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.bfloat16,B=2,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.bfloat16,B=2,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.bfloat16,B=1,L=257,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.bfloat16,B=1,L=257,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.bfloat16,B=1,L=257,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.bfloat16,B=1,L=257,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.bfloat16,B=1,L=257,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.bfloat16,B=1,L=257,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float16,B=1,L=1,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float16,B=1,L=1,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float16,B=1,L=1,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float16,B=1,L=1,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float16,B=1,L=1,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float16,B=1,L=1,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float16,B=1,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float16,B=1,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float16,B=1,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float16,B=1,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float16,B=1,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float16,B=1,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float16,B=2,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float16,B=2,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float16,B=2,L=17,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float16,B=2,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float16,B=2,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float16,B=2,L=17,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float16,B=1,L=257,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float16,B=1,L=257,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float16,B=1,L=257,shrink=1",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed Q mlx.core.float16,B=1,L=257,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed K mlx.core.float16,B=1,L=257,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      },
+      {
+        "case": "packed V mlx.core.float16,B=1,L=257,shrink=4",
+        "passed": true,
+        "different": 0,
+        "max_abs": 0.0
+      }
+    ]
+  },
+  "reference_transition": {
+    "image_tokens": 64,
+    "condition_tokens": [
+      32,
+      1024
+    ],
+    "rtol": 0.02,
+    "atol": 0.01,
+    "note": "Synthetic latent functional check; it does not establish image quality.",
+    "checks": [
+      {
+        "name": "small_without_condition",
+        "shape": [
+          1,
+          64,
+          128
+        ],
+        "finite": true,
+        "max_abs": 0.0,
+        "rms_abs": 0.0,
+        "relative_rms": 0.0,
+        "different_elements": 0,
+        "allclose": true,
+        "requires_exact": true,
+        "prepared_modes": [],
+        "preparation_count": 0
+      },
+      {
+        "name": "small_with_condition",
+        "shape": [
+          1,
+          64,
+          128
+        ],
+        "finite": true,
+        "max_abs": 0.0,
+        "rms_abs": 0.0,
+        "relative_rms": 0.0,
+        "different_elements": 0,
+        "allclose": true,
+        "requires_exact": true,
+        "prepared_modes": [],
+        "preparation_count": 0
+      },
+      {
+        "name": "first_large_condition",
+        "shape": [
+          1,
+          64,
+          128
+        ],
+        "finite": true,
+        "max_abs": 0.0,
+        "rms_abs": 0.0,
+        "relative_rms": 0.0,
+        "different_elements": 0,
+        "allclose": true,
+        "requires_exact": false,
+        "prepared_modes": [
+          "image_cond",
+          "joint"
+        ],
+        "preparation_count": 1
+      },
+      {
+        "name": "repeated_large_condition",
+        "shape": [
+          1,
+          64,
+          128
+        ],
+        "finite": true,
+        "max_abs": 0.0,
+        "rms_abs": 0.0,
+        "relative_rms": 0.0,
+        "different_elements": 0,
+        "allclose": true,
+        "requires_exact": false,
+        "prepared_modes": [
+          "image_cond",
+          "joint"
+        ],
+        "preparation_count": 1,
+        "repeat_exact": true
+      }
+    ],
+    "preparations": [
+      {
+        "block_count": 33,
+        "linear_count": 132,
+        "hybrid_count": 33,
+        "cpu_rows": 272448,
+        "weight_elements": 4048551936,
+        "packed_bytes_replaced": 4301586432,
+        "prepared_weight_bytes": 9771024384,
+        "requested_cpu_fraction": 0.45,
+        "fallback_blocks": {},
+        "build_seconds": 0.0020516660006251186,
+        "eval_seconds": 0.4628734169964446,
+        "prepare_seconds": 0.584738165998715,
+        "active_bytes_before": 5899288916,
+        "active_bytes_after": 11368726868,
+        "peak_bytes": 12288852308,
+        "modes": [
+          "joint",
+          "image_cond"
+        ]
+      }
+    ]
+  },
+  "images_decoded_or_viewed": false,
+  "model_downloads": false,
+  "source_sha256": {
+    "generate.sh": "ca9a8fe2843c90276b0132b0fc2b417e8f60dc32fa7a0c0d470f5c7b949cf3af",
+    "setup.sh": "b4518a01180d680215dfb1456e7c7b6aaab1b29f91be38d81b6ad657d2e0f11d",
+    "runtime_optimization/sitecustomize.py": "7f417345b00e413abcc8024a59ad83a77cfd8eefaa46bb47965a8f6f6af47354",
+    "runtime_optimization/gaon_mflux_kernels.py": "9271e186db66ded1fcb0845d0f380de6f5b6248171adf6cb23ebab5a8fc99ec7",
+    "runtime_optimization/gaon_mflux_runtime.py": "e60c815411d26dea0162ea051414149a6a69cb3d60ef45068a77d1e00f4d64b9"
+  },
+  "notes": [
+    "Single controlled prompt/seed and synthetic reference-token checks; no visual quality assessment.",
+    "The former 173-second result used incorrect per-token modulation and is excluded.",
+    "Runtime layouts serve one fixed-shape CLI invocation; model export and a variable-shape resident service are outside this integration."
+  ]
+}

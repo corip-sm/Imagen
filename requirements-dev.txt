@@ -1,0 +1,2 @@
+# Only needed to regenerate the committed benchmark figures.
+matplotlib==3.10.7

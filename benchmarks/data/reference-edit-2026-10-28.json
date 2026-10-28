@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-28",
+  "hardware": "Apple M3 Pro, 36 GB unified memory",
+  "software": {
+    "mflux": "0.24.0",
+    "mlx": "0.32.4"
+  },
+  "scope": "Wall time includes input preparation, model loading, encoding, 16 steps, decoding and PNG saving.",
+  "same_runtime_in_all_cases": true,
+  "same_model_q8": true,
+  "steps": 16,
+  "seed": 7,
+  "output": [
+    512,
+    512
+  ],
+  "cases": [
+    {
+      "id": "large_reference",
+      "label": "Full-resolution reference",
+      "seconds": 574.56,
+      "peak_mlx_gb": 16.06,
+      "reference_tokens": 11008,
+      "source_size": [
+        2048,
+        1365
+      ],
+      "quality_status": "Not quantitatively assessed"
+    },
+    {
+      "id": "overview_only",
+      "label": "Overview only",
+      "seconds": 72.58,
+      "reference_tokens": 704,
+      "quality_status": "Rejected by user: facial distortion"
+    },
+    {
+      "id": "overview_detail",
+      "label": "Overview + native detail",
+      "seconds": 91.93,
+      "peak_mlx_gb": 13.4,
+      "reference_tokens": 1302,
+      "quality_status": "Not quantitatively assessed; output differs"
+    }
+  ],
+  "comparison_limit": "This measures changed reference inputs and role prompts, not an identical-input stock-runtime speedup. Manual detail selection; not a benchmark of the current automatic selector.",
+  "sample_count": 1,
+  "separate_current_cli_examples": [
+    {
+      "id": "object_removal",
+      "output": [
+        384,
+        512
+      ],
+      "seconds": 63.94,
+      "auto_details": 0
+    },
+    {
+      "id": "eye_edit",
+      "output": [
+        336,
+        512
+      ],
+      "seconds": 120.27,
+      "auto_details": 2
+    },
+    {
+      "id": "eye_edit_revised_prompt",
+      "output": [
+        336,
+        512
+      ],
+      "seconds": 117.74,
+      "auto_details": 2
+    }
+  ]
+}

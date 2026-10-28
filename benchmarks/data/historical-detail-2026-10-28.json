@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-28",
+  "model": "Existing FLUX 3 Image Klein Q8; unchanged checkpoint",
+  "settings": {
+    "width": 512,
+    "height": 512,
+    "steps": 16,
+    "seed": 7
+  },
+  "baseline": {
+    "total_seconds": 574.56,
+    "peak_mlx_gb": 16.06,
+    "cli_saved_successfully": true
+  },
+  "fast_edit": {
+    "total_seconds": 91.0,
+    "peak_mlx_gb": 13.4,
+    "cli_saved_successfully": true
+  },
+  "speedup": 6.313846153846153,
+  "elapsed_reduction_percent": 84.16179337231968,
+  "reference_preparation": {
+    "source": "reference-A (not redistributed)",
+    "source_size": [
+      2048,
+      1365
+    ],
+    "face_index_left_to_right": 0,
+    "detected_faces": [
+      {
+        "confidence": 0.8747209310531616,
+        "height": 0.1543574333190918,
+        "width": 0.1028798371553421,
+        "x": 0.23899364471435547,
+        "y": 0.6990960240364075
+      }
+    ],
+    "crop_box": [
+      415,
+      73,
+      774,
+      474
+    ],
+    "native_detail_size": [
+      359,
+      401
+    ],
+    "detail_resampled": false,
+    "scene_size": [
+      512,
+      352
+    ],
+    "detail_size": [
+      368,
+      416
+    ],
+    "original_reference_tokens": 11008,
+    "prepared_reference_tokens": 1302,
+    "reference_token_reduction_percent": 88.17223837209302,
+    "references": [
+      "scene.png (local only)",
+      "detail.png (local only)"
+    ],
+    "preparation_seconds": 0.5310381250019418
+  },
+  "native_face_crop_pixels_equal": true,
+  "quality_visually_assessed": false,
+  "generated_images_opened": false,
+  "output_bitwise_equivalence_expected": false,
+  "cold_initial_preparation_seconds": 12.744459458001074,
+  "measurement_scope": "Fresh CLI process wall time includes native reference preparation, model loading, input and prompt encoding, 16 steps, decoding, PNG and metadata saving. The Swift compiler cache is warm for the measured fast run.",
+  "prompt_change": "The editing instruction is retained with explicit roles added for the scene and native face-detail references.",
+  "source_sha256": {
+    "generate-fast-edit.sh": "5f383a3ca3c7e0a8ac22e79b3bc5607fc1251416b77d99610a42e7ae4b04796d",
+    "reference_optimization/prepare_references.py": "ff733381c5cf0f2924e289d66ebd293625222d8fc543fcca6d29646e969f8125",
+    "reference_optimization/face_bounds.swift": "2662ff1620fec28852b965d6232d491dc032bac4453f36d1baabe343a5776a72"
+  },
+  "privacy": "Input paths and input-file fingerprints removed for publication. Numeric measurements retained."
+}
