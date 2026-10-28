@@ -8,23 +8,11 @@ Imagen wraps the installed MFLUX/MLX engine and an existing Q8 checkpoint. It ge
 
 The denoising transformer and scheduler run through an MLX C++ executable; Python handles prompt/reference encoding and image decoding.
 
-## Recorded performance (previous Python runtime)
+## Recorded performance
 
-These historical numbers do not describe the current C++ executable.
+On an Apple M3 Pro / 36 GB, the same 512×352 edit input took 72.81 seconds before the latest C++ optimizations and 64.60 seconds after them for 16 denoising steps. Each was measured once, excluding model loading, encoding, decoding and saving. The final latent matched the corresponding Python baseline bit for bit. The 50-second target remains unmet.
 
-![Same-input runtime time and memory](docs/assets/runtime-comparison.svg)
-
-On an **M3 Pro / 36 GB**, a paired 1024×1024, 16-step, seed-7 numeric test used the same Q8 checkpoint, embeddings and noise. Stock MFLUX took **180.70 seconds**, versus **129.79 seconds** with the project runtime: **28.2% less denoising time**. Peak MLX memory increased from **6.46 to 12.33 GB**. All **524,288 FP32 final-latent elements were bitwise identical** in this test.
-
-This excludes model loading, prompt encoding, VAE decoding and image saving. It is one controlled input on one machine, not a general speed or quality guarantee. The historical 1024px numeric diagnostic is separate from the normal 512px image limit.
-
-Stock means the unpatched MFLUX computation. Both runs use a 1 GB MLX allocator-cache cap; this is not an out-of-the-box full-CLI latency comparison.
-
-![Reference preparation case study](docs/assets/reference-preparation.svg)
-
-The second chart measures **changed reference inputs**, with the same optimized runtime in every row. End-to-end times were 574.56s for the large reference, 72.58s for an overview alone, and 91.93s for overview plus native detail. The overview-only result was rejected by the user for facial distortion. The detail experiment used manual crops, outputs differ, and quality equivalence was not measured. It is not a benchmark of the current automatic selector.
-
-Read [measurement boundaries, raw data and limitations](docs/benchmarks.md).
+This is one input on one machine. See the [optimization experiment log](docs/optimization-experiments.md) for conditions, applied changes and rejected attempts.
 
 ## Install
 
@@ -85,7 +73,6 @@ See [usage](docs/usage.md), [automatic references](docs/automatic-references.md)
 ```text
 src/imagen/references/   # shared limits, local detection, crop selection, CLI dispatch
 src/imagen/native/       # C++ denoiser and Python encoding/decoding bridge
-src/imagen/runtime/      # previous Python MLX/Metal runtime, used by historical benchmarks
 scripts/                 # setup, benchmark reproduction, figure rendering
 benchmarks/data/         # recorded numeric evidence
 ```

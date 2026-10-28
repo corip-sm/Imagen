@@ -14,7 +14,7 @@ Copyright © 2023 Apple Inc. MLX's MIT license is included in
 The previous Python runtime changes preserve native LayerNorm, typed arithmetic and reduction order;
 pack Q/K/V before evaluation; process packed Q/K/V directly; and reconstruct
 existing Q8 weights for GPU BF16 and CPU FP32 execution. The on-disk checkpoint
-is not rewritten. The historical benchmark can activate these changes in its own worker process.
+is not rewritten. The historical implementation remains available in Git commit `15b8bf1`.
 
 The FLUX.3 C++ transformer and scheduler follow the MFLUX implementation:
 https://github.com/mflux-community/mflux/tree/8a7fd0a486635f670ef90e02efe1c051ed3f133c/src/mflux/models/flux3
